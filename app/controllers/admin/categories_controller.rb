@@ -1,3 +1,5 @@
+#pair programmed with Nabeel Saleem
+
 class Admin::CategoriesController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
