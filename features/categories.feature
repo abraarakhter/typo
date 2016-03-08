@@ -11,3 +11,6 @@ Feature: Categories
     Given I am on the admin_dashboard page
     When I follow "Categories"
     Then I should see "Categories"
+    When I fill in "Name" with "Test"
+    And I press "Save"
+    Then I should see "Test"
