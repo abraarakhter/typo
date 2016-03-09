@@ -12,4 +12,3 @@ Feature: Merge Articles
     Then I should be on the admin content page
     When I follow "espn"
     Then I should see "Merge Articles"
-    
