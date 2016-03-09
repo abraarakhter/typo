@@ -24,12 +24,12 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def new
-    @show_merge = true
+    @merge_success = true
     new_or_edit
   end
 
   def edit
-    @show_merge = false
+    @merge_success = false
     @article = Article.find(params[:id])
     unless @article.access_by? current_user
       redirect_to :action => 'index'
