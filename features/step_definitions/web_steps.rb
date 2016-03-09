@@ -41,6 +41,12 @@ Given /^the blog is set up$/ do
                 :profile_id => 1,
                 :name => 'admin',
                 :state => 'active'})
+  User.create!({:login => 'nabeel',
+                :password => 'aguwaar',
+                :email => 'nabeel@snow.com',
+                :profile_id => 2,
+                :name => 'nabeel',
+                :state => 'active'})
 end
 
 And /^I am logged into the admin panel$/ do
@@ -87,6 +93,28 @@ end
 
 When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
   fill_in(field, :with => value)
+end
+
+When /^I publish an article "(.*)"$/ do |article|
+  steps %Q{
+    Given I am on the new article page
+    When I fill in "article_title" with "#{article}"
+    And I fill in "article__body_and_extended_editor" with "The Black Mamba"
+    And I press "Publish"
+    Then I should be on the admin content page
+  }
+end
+
+Given /^I am logged into the user panel$/ do
+  visit '/accounts/login'
+  fill_in 'user_login', :with => 'nabeel'
+  fill_in 'user_password', :with => 'aguwaar'
+  click_button 'Login'
+  if page.respond_to? :should
+    page.should have_content('Login successful')
+  else
+    assert page.has_content?('Login successful')
+  end
 end
 
 # Use this to fill in an entire form with data from a table. Example:
