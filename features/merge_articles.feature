@@ -6,6 +6,7 @@ Feature: Merge Articles
   Background:
     Given the blog is set up
     And I am logged into the admin panel
+    And I create two articles
     
   Scenario: Successfully merge articles
     When I publish an article "espn"
