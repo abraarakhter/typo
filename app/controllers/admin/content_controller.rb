@@ -27,6 +27,10 @@ class Admin::ContentController < Admin::BaseController
     @merge_success = true
     new_or_edit
   end
+  
+  def merge
+    redirect_to :action => 'index'
+  end
 
   def edit
     @merge_success = false
