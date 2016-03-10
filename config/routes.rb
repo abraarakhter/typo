@@ -70,7 +70,7 @@ Rails.application.routes.draw do
   match 'articles/category', :to => 'articles#category', :format => false
   
   #merging
-  match '/admin/content/merge_with', :to => 'content#merge'
+  match '/admin/content/merge_with', :to => 'content#merge', :format => false
 
   # SetupController
   match '/setup', :to => 'setup#index', :format => false
