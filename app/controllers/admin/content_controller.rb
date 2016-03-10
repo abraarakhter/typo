@@ -29,7 +29,10 @@ class Admin::ContentController < Admin::BaseController
   end
   
   def merge
-    @article = Article.find(params[:id]).merge_with(params[:merge_with])
+    merger = Article.find(session[:id])
+    merging = Article.find(params[:merge_with])
+    article = merger.merge_with(merging)
+    redirect_to :action => 'index'
   end
 
   def edit
@@ -167,7 +170,7 @@ class Admin::ContentController < Admin::BaseController
     # TODO: Consider refactoring, because double rescue looks... weird.
         
     @article.published_at = DateTime.strptime(params[:article][:published_at], "%B %e, %Y %I:%M %p GMT%z").utc rescue Time.parse(params[:article][:published_at]).utc rescue nil
-
+    session[:id] = @article.id
     if request.post?
       set_article_author
       save_attachments

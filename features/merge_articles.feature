@@ -16,7 +16,7 @@ Feature: Merge Articles
     When I fill in "Article ID:" with the id of "espn2"
     And I press "Merge"
     Then I should see "espn"
-    And I should see "The Black Mamba"
+    And I should not see "espn2"
     
   Scenario: Non-Admin can't merge
     Given I am logged in as a user
