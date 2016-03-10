@@ -11,6 +11,7 @@ Feature: Merge Articles
     When I publish an article "espn"
     And I publish an article "espn2"
     Then I should be on the admin content page
+    Then I should see "espn2"
     When I follow "espn"
     Then I should see "Merge Articles"
     When I fill in "Article ID:" with the id of "espn2"

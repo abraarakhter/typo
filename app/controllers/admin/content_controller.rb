@@ -31,7 +31,7 @@ class Admin::ContentController < Admin::BaseController
   def merge
     merger = Article.find(session[:id])
     merging = Article.find(params[:merge_with])
-    article = merger.merge_with(merging)
+    merger.merge_with(merging)
     redirect_to :action => 'index'
   end
 
