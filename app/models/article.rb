@@ -423,12 +423,12 @@ class Article < Content
     result.reload
     comments.each do |c|
       new = Comment.new(c.attributes.except('article_id'))
-      new.update_attributes(:article_id => result.id)
+      new.update_attributes(article_id: result.id)
       result.add_comment(new)
     end
     merge.comments.each do |c|
       new = Comment.new(c.attributes.except('article_id'))
-      new.update_attributes(:article_id => result.id)
+      new.update_attributes(article_id: result.id)
       result.add_comment(new)
     end
     self.destroy
