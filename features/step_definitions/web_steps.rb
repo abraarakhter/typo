@@ -116,7 +116,7 @@ When /^I publish an article "(.*)"$/ do |article|
   steps %Q{
     Given I am on the new article page
     When I fill in "article_title" with "#{article}"
-    And I fill in "article__body_and_extended_editor" with "The Black Mamba"
+    And I fill in "article__body_and_extended_editor" with "#{article}."
     And I press "Publish"
     Then I should be on the admin content page
   }

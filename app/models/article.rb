@@ -417,7 +417,9 @@ class Article < Content
   end
   
   def merge_with(merge)
-    result = Article.create(title: title, body: body + "\n" + merge.body, author: self.author)
+    result = Article.new(self.attributes.except("guid", "permalink", "body"))
+    result.update_attributes(body: body + "\n" + merge.body)
+    result.save
     comments.each do |c|
       result.add_comment(c)
     end
