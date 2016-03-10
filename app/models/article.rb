@@ -415,6 +415,11 @@ class Article < Content
   def access_by?(user)
     user.admin? || user_id == user.id
   end
+  
+  def merge_with(merge_id)
+    art2 = Article.where(id: merge_id).first
+    Article.create(title: title, body: body + "\n" + art2.body, author: self.author)
+  end
 
   protected
 
