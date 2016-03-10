@@ -418,7 +418,14 @@ class Article < Content
   
   def merge_with(merge_id)
     art2 = Article.where(id: merge_id).first
-    Article.create(title: title, body: body + "\n" + art2.body, author: self.author)
+    result = Article.create(title: title, body: body + "\n" + art2.body, author: self.author)
+    comments.each do |c|
+      result.add_comment(c)
+    end
+    art2.comments.each do |c|
+      result.add_comment(c)
+    end
+    result
   end
 
   protected
