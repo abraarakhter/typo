@@ -420,6 +420,7 @@ class Article < Content
     result = Article.new(self.attributes.except("guid", "permalink", "body"))
     result.update_attributes(body: body + "\n" + merge.body)
     result.save
+    result.reload
     comments.each do |c|
       result.add_comment(c)
     end
