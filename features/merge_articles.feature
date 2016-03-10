@@ -13,9 +13,6 @@ Feature: Merge Articles
     Then I should be on the admin content page
     When I follow "espn"
     Then I should see "Merge Articles"
-    When I fill in "Article ID:" with the id of "espn2"
-    And I press "Merge"
-    Then I should see
     
   Scenario: Non-Admin can't merge
     Given I am logged in as a user

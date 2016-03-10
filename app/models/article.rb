@@ -416,14 +416,14 @@ class Article < Content
     user.admin? || user_id == user.id
   end
   
-  def merge_with(merge_id)
-    art2 = Article.where(id: merge_id).first
-    result = Article.create(title: title, body: body + "\n" + art2.body, author: self.author)
+  def merge_with(merge)
+    # art2 = Article.where(id: merge_id).first
+    result = Article.create(title: title, body: body + "\n" + merge.body, author: self.author)
     comments.each do |c|
       result.add_comment(c)
     end
-    art2.comments.each do |c|
-      result.add_comment(c)
+    merge.comments.each do |c2|
+      result.add_comment(c2)
     end
     result
   end
