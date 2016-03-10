@@ -99,6 +99,11 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
 end
 
+When /^(?:|I )fill in "([^"]*)" with the id of "([^"]*)"$/ do |field, value|
+  merge_id = Article.where(title: value).first.id
+  fill_in(field, :with => merge_id)
+end
+
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
 end

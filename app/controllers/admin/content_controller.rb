@@ -29,7 +29,7 @@ class Admin::ContentController < Admin::BaseController
   end
   
   def merge
-    redirect_to :action => 'index'
+    @article = Article.find(params[:id]).merge_with(params[:merge_with])
   end
 
   def edit
